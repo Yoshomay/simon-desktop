@@ -1,0 +1,108 @@
+let currentMove = 0;
+let score = 0;
+let highScore = 0;
+let turnCount = 17;
+let moves = {};
+
+const scoreSpan = document.getElementById('score');
+const highScoreSpan = document.getElementById('highScore');
+const resetBTN = document.getElementById('restartBTN');
+
+
+//  press restart button
+restartBTN.addEventListener("click", function() {
+
+if (restartBTN.textContent == 'Start') {  //  start the game
+for (let loopCount = 1; loopCount < turnCount; loopCount++) {
+    moves[loopCount] = String((Math.floor(Math.random() * 4)) + 1);
+}
+document.getElementById('restartBTN').textContent = 'Restart';
+
+makeNextButtonGlow();
+currentMove = 1;
+console.log(moves)
+}
+
+else {restartGame();}
+
+});
+
+
+
+//  clicking the gameplay buttons
+for (let loopCount = 1; loopCount < 5; loopCount++) {
+    document.getElementById(String(loopCount)).addEventListener("click", (event) => {
+        
+    let button = event.currentTarget;
+    if (currentMove == turnCount) {
+        console.log('you winnn');
+    }
+
+    if (button.id == moves[currentMove]) {
+        score++;
+        scoreSpan.textContent = score;
+
+        makeNextButtonGlow();
+        currentMove++;
+        }
+    
+    
+    else {  //  pressed the wrong button
+        if (score > highScore) {highScore = score; highScoreSpan.textContent = score;}
+        restartGame()
+    }
+    })
+
+}
+
+function makeNextButtonGlow() {
+        let nextButton = moves[currentMove + 1];
+        let glowClass;
+
+        switch (nextButton) {
+            case "1": glowClass = 'greenBTNGlow'; break;
+            case "2": glowClass = 'redBTNGlow'; break;
+            case "3": glowClass = 'yellowBTNGlow'; break;
+            case "4": glowClass = 'blueBTNGlow'; break;
+        }
+
+    setTimeout(() => {
+        document.getElementById('overlay').style.display = 'block';
+
+    setTimeout(() => {
+        document.getElementById(String(nextButton)).classList.add(glowClass);
+        console.log(`glowclass ${glowClass}`);
+    }, 600);
+}, 200);
+
+
+
+    setTimeout(() => {
+        document.getElementById(String(nextButton)).classList.remove(glowClass);
+        setTimeout (() => {document.getElementById('overlay').style.display = 'none';}, 700);
+        //console.log('de le ted');
+    }, 1000)
+
+
+}
+
+
+
+//  clicked reset score
+document.getElementById('resetBTN').addEventListener("click", function() {
+    restartGame(1);
+})
+
+function restartGame(resetScore) {
+    score = 0;
+    scoreSpan.textContent = 0;
+    moves = {};
+    currentMove = 0;
+    restartBTN.textContent = 'Start';
+    console.clear();
+
+    if (resetScore === 1) {
+        highScore = 0;
+        highScoreSpan.textContent = '0';
+    }
+}

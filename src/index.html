@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Simon</title>
+</head>
+<body>
+    
+    <span id="gmaeplayContainer" style="display: block;">
+    <br>
+    <div style="position: absolute; top: 5px; right: 5px;">Your high score is: <span id="highScore">0</span><br><br>
+         Your score is: <span id="score">0</span>
+         <span class="debug"><br><br>LocalMove = <span id="localMoveSpan">0</span></span>
+    </div><br><br><br><br><br><br>
+
+    <div class="btnGrid">
+        <div class="gameplayBTN greenBTN"  id="1"></div>
+        <div class="gameplayBTN redBTN"    id="2"></div>
+        <div class="gameplayBTN yellowBTN" id="3"></div>
+        <div class="gameplayBTN blueBTN"   id="4"></div>
+    </div><br><br>
+
+        <button id="cheat" class="menuButton debug" style="bottom: 245px; right: 5px;">Cheat</button>
+        <button onclick="location.reload();" class="menuButton debug" style="bottom: 165px; right: 5px;">Refresh</button>
+        <button id="resetBTN" class="menuButton"l/ style="bottom: 85px; right: 5px;">Reset score</button>
+        <button id="restartBTN" class="menuButton"  style="bottom: 5px; right: 5px;">Start</button> 
+
+
+    </span>
+
+    <script src="main.js"></script>
+<darkOverlay id="overlay"></darkOverlay>
+</body>
+</html>
