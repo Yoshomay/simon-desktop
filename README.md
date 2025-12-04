@@ -1,5 +1,8 @@
-Desktop version of the orignal Simon toy. This is still in beta and is missing a lot of features currently.
+Desktop version of the orignal Simon toy. This is still in beta and is missing features currently.
 
+Theme heavily based on the [Zorin OS](https://zorin.com/os/) ZorinBlue-Dark gtk theme
+
+Sound effects done by [Sinotus](https://www.twitter.com/sinotus13)
 
 
 # Build instructions
@@ -18,7 +21,7 @@ Now build the project\
 `npm run tauri build`
 
 The .deb will be located in `/src-tauri/target/release/bundle/deb/`\
-The .rpm will be located in `/src-tauri/target/release/bundle/rpm/`\
+The .rpm will be located in `/src-tauri/target/release/bundle/rpm/`\ (rpm builds are off right now)
 The .appimage will be located in `/src-tauri/target/release/bundle/appimage/`
 
 

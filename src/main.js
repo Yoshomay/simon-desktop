@@ -1,5 +1,5 @@
 //  enable this to have debug info shown
-const debug = true;
+const debug = false;
 
 if (debug == true) {
     const debugThings = document.getElementsByClassName('debug');
@@ -23,7 +23,7 @@ const scoreSpan = document.getElementById('score');
 const highScoreSpan = document.getElementById('highScore');
 const resetBTN = document.getElementById('restartBTN');
 
-/*
+
 const sounds1 = {
     1: 'sounds/1_1.mp3',
     2: 'sounds/1_2.mp3',
@@ -45,7 +45,7 @@ const sounds3 = {
 
 function playAudio(file) {
     new Audio(file).play();
-}*/
+}
 
 
 //  generate turn order
@@ -95,8 +95,14 @@ function clearGame(resetScore) {
 
         case 'veryHard': 
             gameSpeed = 300; 
-            turnCount = 25;
+            turnCount = 9999;
             break;
+
+        case 'endless':
+            gameSpeed = 300;
+            turnCount = 999;
+            break;
+
     }
     moves = {};
     generateMoves();
@@ -112,7 +118,7 @@ for (let i = 1; i < 5; i++) {
         if (clickedBTN.target.id == moves[localMove]) {
             console.log('correct');
 
-            //playAudio(sounds2[clickedBTN.target.id]);
+            playAudio(sounds2[clickedBTN.target.id]);
 
             if (localMove == currentMove) {  //  you finished 1 loop
                 currentMove++;
@@ -153,7 +159,7 @@ function showOrder() {
                 case '4': glowClass = 'blueBTNGlow'; break;
             }
 
-            //playAudio(sounds1[moves[i]]);
+            playAudio(sounds1[moves[i]]);
 
             let targetBTN = document.getElementById(String(moves[i]));
             targetBTN.classList.add(glowClass);
@@ -185,7 +191,35 @@ document.getElementById('cheat').addEventListener("click", () => {
 document.getElementById('resetBTN').addEventListener("click", () => clearGame(true));
 
 document.getElementById('restartBTN').addEventListener("click", () => {
-    clearGame();
-    document.getElementById('restartBTN').textContent = 'Restart';
+    document.getElementById('mainMenuContainer').style.display = 'block';
+    document.getElementById('gameplayContainer').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+
 });
 
+
+
+
+
+
+
+
+
+for (let i = 0; i < 6; i++) {
+    document.getElementsByClassName('col')[i].addEventListener("click", (input) => {
+        document.getElementById("mainMenuContainer").style.display = 'none';
+        document.getElementById("gameplayContainer").style.display = 'block';
+        difficulty = input.target.id;
+
+        console.log(difficulty, gameSpeed, turnCount);
+
+        setTimeout(clearGame(), 400);
+    })
+}
+
+function resizeBTNGrid() {
+    document.getElementsByClassName('btnGrid')[0].style.width = `${window.innerWidth - 250}px`;
+}
+
+resizeBTNGrid();
+window.addEventListener("resize", resizeBTNGrid);

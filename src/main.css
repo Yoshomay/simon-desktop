@@ -2,14 +2,15 @@ body {
   background-color: #222b30;
   color: #bde6fb;
   text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 div {
   background-color: #161c1f;
   border-radius: 15px;
   padding: 13px;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
   margin: 0 auto;
 }
 
@@ -30,19 +31,17 @@ button:active {
 }
 
 .btnGrid {
-  margin: 0 0 0 15%;
-  position: absolute;
-  z-index: 10;
   display: grid;
-  grid-template-columns: auto auto;
-  scale: 125%;
+  grid-template-columns: repeat(2, 50%);
+  position: absolute;
+  height: 90%;
+  left: 10px;
+  bottom: 5px;
 }
 
 .gameplayBTN {
-  z-index: 11;
-  min-width: 150px;
-  height: 25px;
   margin: 8px;
+  border-radius: 15px;
   cursor: pointer;
   transition: box-shadow 0.5s ease-out;
 }
@@ -102,7 +101,7 @@ button:active {
 darkOverlay {
   display: none;
   background-color: rgba(0, 0, 0, 0.25);
-  z-index: 11;
+  z-index: 15;
   width: 100%;
   height: 100%;
   top: 0;
@@ -119,4 +118,30 @@ darkOverlay {
 
 .debug {
   display: none;
+}
+
+.titleScreenButtonGridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 800px));
+  width: 80%;
+  height: 80vh;
+  margin: 0 auto;
+  background-color: red;
+  gap: 15px;
+  background: none;
+  font-weight: bold;
+}
+.titleScreenButtonGridContainer .col {
+  cursor: pointer;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2d3940;
+}
+.titleScreenButtonGridContainer .col:hover {
+  background-color: #35434a;
+}
+.titleScreenButtonGridContainer .col:active {
+  background-color: #415159;
 }/*# sourceMappingURL=main.css.map */

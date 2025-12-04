@@ -8,7 +8,41 @@
 </head>
 <body>
     
-    <span id="gmaeplayContainer" style="display: block;">
+    <span id="mainMenuContainer" style="width: 100%; height: 100%;">
+
+        <div class="titleScreenButtonGridContainer">
+            <div class="col" id="easy">Easy</div>
+            <div class="col" id="medium">Medium</div>
+            <div class="col" id="hard">Hard</div>
+            <div class="col" id="veryHard">Very Hard</div>
+            <div class="col" id="endless">Endless</div>
+            <div class="col" id="custom">Custom</div>
+
+
+        </div>
+
+    </span>
+
+
+
+    <span id="customMenu" style="display: none;">
+
+        Input how many turns you want to last.<br>
+        <input type="text" id="turnCountInput" value="16"><br><br>
+
+        What game speed do you want?<br>
+        <label><input type="radio" name="gameSpeedInput" value="easy">Easy</label><br>
+        <label><input type="radio" name="gameSpeedInput" value="medium">Medium</label><br>
+        <label><input type="radio" name="gameSpeedInput" value="hard">Hard</label><br>
+        <label><input type="radio" name="gameSpeedInput" value="veryHard">Very Hard</label><br>
+
+        <button id="customContinueBTN">Continue</button>
+
+    </span>
+
+
+
+    <span id="gameplayContainer" style="display: none;">
     <br>
     <div style="position: absolute; top: 5px; right: 5px;">Your high score is: <span id="highScore">0</span><br><br>
          Your score is: <span id="score">0</span>
@@ -25,10 +59,12 @@
         <button id="cheat" class="menuButton debug" style="bottom: 245px; right: 5px;">Cheat</button>
         <button onclick="location.reload();" class="menuButton debug" style="bottom: 165px; right: 5px;">Refresh</button>
         <button id="resetBTN" class="menuButton"l/ style="bottom: 85px; right: 5px;">Reset score</button>
-        <button id="restartBTN" class="menuButton"  style="bottom: 5px; right: 5px;">Start</button> 
+        <button id="restartBTN" class="menuButton"  style="bottom: 5px; right: 5px; padding: 10px;">Change difficulty</button>
 
 
     </span>
+
+
 
     <script src="main.js"></script>
 <darkOverlay id="overlay"></darkOverlay>
