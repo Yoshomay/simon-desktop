@@ -49,26 +49,26 @@ button {
 }
 
 .greenBTN {background-color: greenyellow;
-    &:active {box-shadow: 0 0 20px rgb(166, 255, 32); transition: none;}}
-    .greenBTNGlow {box-shadow: 0 0 20px rgb(166, 255, 32); transition: none;}
+    &:active {box-shadow: 0 0 30px rgb(166, 255, 32); transition: none;}}
+    .greenBTNGlow {box-shadow: 0 0 30px rgb(166, 255, 32); transition: none;}
 
 .redBTN {background-color: rgb(239, 37, 15);
-    &:active {box-shadow: 0 0 20px rgb(239, 37, 15); transition: none;}}
-    .redBTNGlow {box-shadow: 0 0 20px rgb(239, 37, 15); transition: none;}
+    &:active {box-shadow: 0 0 30px rgb(239, 37, 15); transition: none;}}
+    .redBTNGlow {box-shadow: 0 0 30px rgb(239, 37, 15); transition: none;}
 
 .yellowBTN {background-color: rgb(246, 246, 50);
-    &:active {box-shadow: 0 0 20px rgb(255, 251, 137); transition: none;}}
-    .yellowBTNGlow {box-shadow: 0 0 20px rgb(255, 251, 137); transition: none;}
+    &:active {box-shadow: 0 0 30px rgb(255, 251, 137); transition: none;}}
+    .yellowBTNGlow {box-shadow: 0 0 30px rgb(255, 251, 137); transition: none;}
 
 .blueBTN {background-color: rgb(29, 108, 255);
-    &:active {box-shadow: 0 0 20px rgb(78, 140, 254); transition: none;}}
-    .blueBTNGlow {box-shadow: 0 0 20px rgb(78, 140, 254); transition: none;}
+    &:active {box-shadow: 0 0 30px rgb(78, 140, 254); transition: none;}}
+    .blueBTNGlow {box-shadow: 0 0 30px rgb(78, 140, 254); transition: none;}
 
 
 darkOverlay {
     display: none;
     //transition: background-color 0.3s ease-in;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.2);
     z-index: 15;
     width: 100%;
     height: 100%;
@@ -109,4 +109,53 @@ darkOverlay {
         &:hover {background-color: #35434a;}
         &:active {background-color: #415159;}
     }
+}
+
+.randomMenuContainer {
+    display: grid;
+    grid-template-areas: 
+        "left top-right"
+        "left bottom-right";
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+
+    width: 70vw;
+    gap: 10px;
+    font-weight: bold;
+    background: none;
+
+    .col {
+        width: 80%;
+        padding: 15px;
+        background-color: #2d3940;
+    }
+
+    #customSpeedInput {
+        grid-area: left;
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #customTurnCountInput {
+        grid-area: top-right;
+        display: flex;
+        justify-content: center;
+        align-items: center;}
+
+    #customContinueBTN {
+        grid-area: bottom-right;
+        background-color: #2d3940;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        &:hover {background-color: #35434a;}
+        &:active {background-color: #415159;}}
+}
+
+input[type="number"] {
+    background-color: #161c1f;
+    color: white;
 }

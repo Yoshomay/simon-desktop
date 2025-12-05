@@ -11,13 +11,12 @@
     <span id="mainMenuContainer" style="width: 100%; height: 100%;">
 
         <div class="titleScreenButtonGridContainer">
-            <div class="col" id="easy">Easy</div>
-            <div class="col" id="medium">Medium</div>
-            <div class="col" id="hard">Hard</div>
+            <div class="col"     id="easy">Easy</div>
+            <div class="col"   id="medium">Medium</div>
+            <div class="col"     id="hard">Hard</div>
             <div class="col" id="veryHard">Very Hard</div>
-            <div class="col" id="endless">Endless</div>
-            <div class="col" id="custom">Custom</div>
-
+            <div class="col"  id="endless">Endless</div>
+            <div class="col"   id="custom">Custom</div>
 
         </div>
 
@@ -27,46 +26,63 @@
 
     <span id="customMenu" style="display: none;">
 
-        Input how many turns you want to last.<br>
-        <input type="text" id="turnCountInput" value="16"><br><br>
+    <div class="randomMenuContainer">
+        <div class="col" id="customTurnCountInput"> 
+            <span id="turnCountCenterBox">
+                Turn count:<br><br>
+                <input type="number" id="turnCountInput" value="16"><br><br>
+            </span>
+        </div>
 
-        What game speed do you want?<br>
-        <label><input type="radio" name="gameSpeedInput" value="easy">Easy</label><br>
-        <label><input type="radio" name="gameSpeedInput" value="medium">Medium</label><br>
-        <label><input type="radio" name="gameSpeedInput" value="hard">Hard</label><br>
-        <label><input type="radio" name="gameSpeedInput" value="veryHard">Very Hard</label><br>
+        <div class="col" id="customSpeedInput">
+            <span id="speedCenterbox">
+                Game Speed:<br><br><br>
 
-        <button id="customContinueBTN">Continue</button>
+                <span style="display: inline-block; text-align: left;">
+                    <label><input type="radio" name="gameSpeedInput"     value="easy">Easy</label><br>
+                    <label><input type="radio" name="gameSpeedInput"   value="medium">Medium</label><br>
+                    <label><input type="radio" name="gameSpeedInput"     value="hard">Hard</label><br>
+                    <label><input type="radio" name="gameSpeedInput" value="veryHard">Very Hard</label><br>
+                </span>
+            </span>
+        </div>
+
+        <div class="col" id="customContinueBTN">Continue</div>
+
+    </div>
+
+        <button class="menuButton difficultyButton" style="bottom: 5px; right: 5px; padding: 10px;">Change difficulty</button>
+
 
     </span>
 
 
 
     <span id="gameplayContainer" style="display: none;">
-    <br>
-    <div style="position: absolute; top: 5px; right: 5px;">Your high score is: <span id="highScore">0</span><br><br>
+
+    <div style="position: absolute; top: 5px; right: 5px;">
          Your score is: <span id="score">0</span>
          <span class="debug"><br><br>LocalMove = <span id="localMoveSpan">0</span></span>
-    </div><br><br><br><br><br><br>
+    </div>
 
     <div class="btnGrid">
-        <div class="gameplayBTN greenBTN"  id="1"></div>
-        <div class="gameplayBTN redBTN"    id="2"></div>
+        <div class="gameplayBTN  greenBTN" id="1"></div>
+        <div class="gameplayBTN    redBTN" id="2"></div>
         <div class="gameplayBTN yellowBTN" id="3"></div>
-        <div class="gameplayBTN blueBTN"   id="4"></div>
+        <div class="gameplayBTN   blueBTN" id="4"></div>
     </div><br><br>
 
-        <button id="cheat" class="menuButton debug" style="bottom: 245px; right: 5px;">Cheat</button>
-        <button onclick="location.reload();" class="menuButton debug" style="bottom: 165px; right: 5px;">Refresh</button>
-        <button id="resetBTN" class="menuButton"l/ style="bottom: 85px; right: 5px;">Reset score</button>
-        <button id="restartBTN" class="menuButton"  style="bottom: 5px; right: 5px; padding: 10px;">Change difficulty</button>
+        <button id="cheat" class="menuButton debug" style="top: 100px; right: 5px;">Cheat</button>
+        <button onclick="location.reload();" class="menuButton debug" style="top: 180px; right: 5px;">Refresh</button>
 
+        <button class="menuButton difficultyButton" style="bottom: 5px; right: 5px; padding: 10px;">Change difficulty</button>
 
     </span>
 
 
 
-    <script src="main.js"></script>
+    <script src="main.js" type="module"></script>
 <darkOverlay id="overlay"></darkOverlay>
+
 </body>
 </html>

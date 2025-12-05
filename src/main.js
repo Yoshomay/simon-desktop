@@ -1,5 +1,5 @@
 //  enable this to have debug info shown
-const debug = false;
+const debug = true;
 
 if (debug == true) {
     const debugThings = document.getElementsByClassName('debug');
@@ -11,7 +11,6 @@ if (debug == true) {
 let currentMove = 0;
 let localMove = 0;
 let score = 0;
-let highScore = 0;
 let moves = {};
 
 let difficulty = 'hard';
@@ -20,8 +19,12 @@ let turnCount;
 
 
 const scoreSpan = document.getElementById('score');
-const highScoreSpan = document.getElementById('highScore');
+const localMoveSpan = document.getElementById('localMoveSpan');
 const resetBTN = document.getElementById('restartBTN');
+const mainMenuContainer = document.getElementById('mainMenuContainer');
+const gameplayContainer = document.getElementById('gameplayContainer');
+const overlay = document.getElementById('overlay');
+const customMenuContainer = document.getElementById('customMenu');
 
 
 const sounds1 = {
@@ -57,39 +60,50 @@ function generateMoves() {
 }
 
 //  clear game
-function clearGame(resetScore) {
-    if (resetScore == true) {
-        highScore = 0; 
-        document.getElementById('highScore').textContent = '0';
-    }
-    else if (score > highScore) {
-        highScore = score;
-        document.getElementById('highScore').textContent = score;
-    }
-
+function clearGame(input) {
     score = 0;
-    document.getElementById('score').textContent = '0';
+    scoreSpan.textContent = '0';
 
     currentMove = 0;
 
     localMove = 0;
-    document.getElementById('localMoveSpan').textContent = '0';
+    localMoveSpan.textContent = '0';
 
 
 
     switch (difficulty) {
         case 'easy': 
             gameSpeed = 1500; 
-            turnCount = 5;
             break;
 
         case 'medium': 
             gameSpeed = 1000; 
-            turnCount = 10;
             break;
 
         case 'hard': 
             gameSpeed = 500; 
+            break;
+
+        case 'veryHard': 
+            gameSpeed = 300; 
+            break;
+
+        case 'endless':
+            gameSpeed = 300;
+            break;
+    }
+
+    if (input != 'custom') {
+    switch (difficulty) {
+        case 'easy': 
+            turnCount = 5;
+            break;
+
+        case 'medium': 
+            turnCount = 10;
+            break;
+
+        case 'hard': 
             turnCount = 16;
             break;
 
@@ -99,11 +113,12 @@ function clearGame(resetScore) {
             break;
 
         case 'endless':
-            gameSpeed = 300;
             turnCount = 999;
             break;
+    }}
 
-    }
+
+    
     moves = {};
     generateMoves();
     showOrder();
@@ -124,13 +139,13 @@ for (let i = 1; i < 5; i++) {
                 currentMove++;
 
                 localMove = 0;
-                document.getElementById('localMoveSpan').textContent = 0;
+                localMoveSpan.textContent = 0;
 
                 score++; 
-                document.getElementById('score').textContent = score;
+                scoreSpan.textContent = score;
             showOrder();
 }
-            else {localMove++; document.getElementById('localMoveSpan').textContent = localMove;}
+            else {localMove++; localMoveSpan.textContent = localMove;}
         }
         else {
             console.log('incorrect');
@@ -141,9 +156,9 @@ for (let i = 1; i < 5; i++) {
 }
 
 function showOrder() {
-    document.getElementById('overlay').style.display = 'block';
+    overlay.style.display = 'block';
 
-    console.clear();
+    //console.clear();
     console.log(moves);
 
     setTimeout(() => {
@@ -175,7 +190,7 @@ function showOrder() {
 
 //  controls how long the dark overlay will last,
 //  currentMove * gameSpeed to make it last the time needed, + gameSpeed to add a little bit extra before it goes away
-setTimeout(() => {document.getElementById('overlay').style.display = 'none';}, currentMove * gameSpeed + gameSpeed + gameSpeed);  
+setTimeout(() => {overlay.style.display = 'none';}, currentMove * gameSpeed + gameSpeed + gameSpeed);  
 }
 
 
@@ -187,28 +202,43 @@ document.getElementById('cheat').addEventListener("click", () => {
 
 })
 
-
-document.getElementById('resetBTN').addEventListener("click", () => clearGame(true));
-
-document.getElementById('restartBTN').addEventListener("click", () => {
-    document.getElementById('mainMenuContainer').style.display = 'block';
-    document.getElementById('gameplayContainer').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
+const difficultyButtons = document.getElementsByClassName('difficultyButton');
+for (let i = 0; i < difficultyButtons.length; i++) {
+    difficultyButtons[i].addEventListener("click", () => {
+        mainMenuContainer.style.display = 'block';
+        gameplayContainer.style.display = 'none';
+        customMenuContainer.style.display = 'none';
+        overlay.style.display = 'none';
 
 });
+}
+
+document.getElementById('custom').addEventListener("click", () => {
+    mainMenuContainer.style.display = 'none';
+    customMenuContainer.style.display = 'block';
+})
+
+document.getElementById('customContinueBTN').addEventListener("click", () => {
+    
+    if (!document.querySelector('input[name="gameSpeedInput"]:checked')) {return}
+    difficulty = document.querySelector('input[name="gameSpeedInput"]:checked').value;
+    console.log(difficulty); 
+    turnCount = document.getElementById('turnCountInput').value;
+    
+    customMenuContainer.style.display = 'none';
+    gameplayContainer.style.display = 'block';
+
+    setTimeout(clearGame('custom'), 400);
+
+})
 
 
 
-
-
-
-
-
-
-for (let i = 0; i < 6; i++) {
+//  title screen buttons
+for (let i = 0; i < 5; i++) {
     document.getElementsByClassName('col')[i].addEventListener("click", (input) => {
-        document.getElementById("mainMenuContainer").style.display = 'none';
-        document.getElementById("gameplayContainer").style.display = 'block';
+        mainMenuContainer.style.display = 'none';
+        gameplayContainer.style.display = 'block';
         difficulty = input.target.id;
 
         console.log(difficulty, gameSpeed, turnCount);
@@ -217,6 +247,7 @@ for (let i = 0; i < 6; i++) {
     })
 }
 
+//  resize gameplay buttons
 function resizeBTNGrid() {
     document.getElementsByClassName('btnGrid')[0].style.width = `${window.innerWidth - 250}px`;
 }
