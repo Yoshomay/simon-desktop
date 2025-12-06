@@ -5,6 +5,12 @@ body {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+a {
+  color: white;
 }
 
 div {
@@ -124,12 +130,11 @@ darkOverlay {
   display: grid;
   grid-template-columns: repeat(3, minmax(100px, 800px));
   width: 80%;
-  height: 80vh;
+  height: 91vh;
   margin: 0 auto;
   background-color: red;
   gap: 15px;
   background: none;
-  font-weight: bold;
 }
 .titleScreenButtonGridContainer .col {
   cursor: pointer;
@@ -153,7 +158,6 @@ darkOverlay {
   grid-template-columns: 1fr 1fr;
   width: 70vw;
   gap: 10px;
-  font-weight: bold;
   background: none;
 }
 .randomMenuContainer .col {
@@ -163,7 +167,7 @@ darkOverlay {
 }
 .randomMenuContainer #customSpeedInput {
   grid-area: left;
-  height: 80vh;
+  height: 75vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -192,4 +196,59 @@ darkOverlay {
 input[type=number] {
   background-color: #161c1f;
   color: white;
+}
+
+#victoryContainer {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 16;
+  position: fixed;
+  height: 50vh;
+  width: 50vw;
+  left: 25%;
+  top: 25%;
+}
+#victoryContainer span button {
+  padding: 10px;
+  width: 135px;
+  height: 64px;
+}
+
+.bgBlur {
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+}
+
+#hamburgerContainer {
+  display: none;
+  place-items: center;
+  z-index: 16;
+  position: absolute;
+  background: none;
+  left: 35vw;
+  top: 1%;
+  height: 90vh;
+}
+#hamburgerContainer #hamburger2 {
+  position: relative;
+  max-height: 90vh;
+  overflow: auto;
+  width: 30vw;
+  background-color: #161c1f;
+}
+
+#hamburgerX {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  border-radius: 100%;
+  cursor: pointer;
+  background-color: #2d3940;
+  padding: 5px;
+  height: 15px;
+  width: 15px;
 }/*# sourceMappingURL=main.css.map */

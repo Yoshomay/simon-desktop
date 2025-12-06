@@ -1,5 +1,5 @@
 //  enable this to have debug info shown
-const debug = true;
+let debug = true;
 
 if (debug == true) {
     const debugThings = document.getElementsByClassName('debug');
@@ -8,16 +8,6 @@ if (debug == true) {
     }
 }
 
-let currentMove = 0;
-let localMove = 0;
-let score = 0;
-let moves = {};
-
-let difficulty = 'hard';
-let gameSpeed; 
-let turnCount;
-
-
 const scoreSpan = document.getElementById('score');
 const localMoveSpan = document.getElementById('localMoveSpan');
 const resetBTN = document.getElementById('restartBTN');
@@ -25,30 +15,38 @@ const mainMenuContainer = document.getElementById('mainMenuContainer');
 const gameplayContainer = document.getElementById('gameplayContainer');
 const overlay = document.getElementById('overlay');
 const customMenuContainer = document.getElementById('customMenu');
+const victoryContainer = document.getElementById('victoryContainer');
 
 
+
+let currentMove = 0;
+let localMove = 0;
+let moves = {};
+
+let difficulty;
+let gameSpeed; 
+let turnCount;
+let isCustom = false;
+
+/*
 const sounds1 = {
-    1: 'sounds/1_1.mp3',
-    2: 'sounds/1_2.mp3',
-    3: 'sounds/1_3.mp3',
-    4: 'sounds/1_4.mp3'
+    1: new Audio('sounds/1_1.mp3'),
+    2: new Audio('sounds/1_2.mp3'),
+    3: new Audio('sounds/1_3.mp3'),
+    4: new Audio('sounds/1_4.mp3')
 }
 const sounds2 = {
-    1: 'sounds/2_1.mp3',
-    2: 'sounds/2_2.mp3',
-    3: 'sounds/2_3.mp3',
-    4: 'sounds/2_4.mp3'
+    1: new Audio('sounds/2_1.mp3'),
+    2: new Audio('sounds/2_2.mp3'),
+    3: new Audio('sounds/2_3.mp3'),
+    4: new Audio('sounds/2_4.mp3')
 }
 const sounds3 = {
-    1: 'sounds/3_1.mp3',
-    2: 'sounds/3_2.mp3',
-    3: 'sounds/3_3.mp3',
-    4: 'sounds/3_4.mp3'
-}
-
-function playAudio(file) {
-    new Audio(file).play();
-}
+    1: new Audio('sounds/3_1.mp3'),
+    2: new Audio('sounds/3_2.mp3'),
+    3: new Audio('sounds/3_3.mp3'),
+    4: new Audio('sounds/3_4.mp3')
+}*/
 
 
 //  generate turn order
@@ -56,15 +54,13 @@ function generateMoves() {
     for (let i = 0; i < turnCount; i++) {
         moves[i] = String(Math.floor(Math.random() * 4) + 1);
         }
-    if (debug == true) {console.log(moves);}
+    console.log(moves);
 }
 
 //  clear game
-function clearGame(input) {
-    score = 0;
-    scoreSpan.textContent = '0';
-
+function clearGame() {
     currentMove = 0;
+    scoreSpan.textContent = '0';
 
     localMove = 0;
     localMoveSpan.textContent = '0';
@@ -73,52 +69,41 @@ function clearGame(input) {
 
     switch (difficulty) {
         case 'easy': 
-            gameSpeed = 1500; 
-            break;
+            gameSpeed = 1000; break;
 
         case 'medium': 
-            gameSpeed = 1000; 
-            break;
+            gameSpeed = 1000; break;
 
         case 'hard': 
-            gameSpeed = 500; 
-            break;
+            gameSpeed = 500; break;
 
         case 'veryHard': 
-            gameSpeed = 300; 
-            break;
-
         case 'endless':
-            gameSpeed = 300;
-            break;
+            gameSpeed = 300; break;
     }
 
-    if (input != 'custom') {
+    if (isCustom == false) {
     switch (difficulty) {
         case 'easy': 
-            turnCount = 5;
-            break;
+            turnCount = 5; break;
 
         case 'medium': 
-            turnCount = 10;
-            break;
+            turnCount = 10; break;
 
         case 'hard': 
-            turnCount = 16;
-            break;
+            turnCount = 16; break;
 
-        case 'veryHard': 
-            gameSpeed = 300; 
-            turnCount = 9999;
-            break;
+        case 'veryHard':  
+            turnCount = 24; break;
 
         case 'endless':
-            turnCount = 999;
-            break;
+            turnCount = 9999; break;
     }}
-
-
     
+    victoryContainer.style.display = 'none';
+    overlay.style.display = 'none';
+    overlay.classList.remove('bgBlur');
+
     moves = {};
     generateMoves();
     showOrder();
@@ -129,11 +114,22 @@ function clearGame(input) {
 //  code for clickin the buttons
 for (let i = 1; i < 5; i++) {
     document.getElementById(i).addEventListener("click", (clickedBTN) => {
+    
+        //  u win
+        if (clickedBTN.target.id == moves[localMove] && localMove == currentMove && currentMove == turnCount - 1) {
+            
+                overlay.style.display = 'block';
+                overlay.classList.add('bgBlur');
+                victoryContainer.style.display = 'grid';                 
+                return;
+            
+        }
+
 
         if (clickedBTN.target.id == moves[localMove]) {
-            console.log('correct');
-
-            playAudio(sounds2[clickedBTN.target.id]);
+            //sounds1[clickedBTN.target.id].pause();
+            //sounds1[clickedBTN.target.id].currentTime = 0;
+            //sounds1[clickedBTN.target.id].cloneNode().play();
 
             if (localMove == currentMove) {  //  you finished 1 loop
                 currentMove++;
@@ -141,29 +137,27 @@ for (let i = 1; i < 5; i++) {
                 localMove = 0;
                 localMoveSpan.textContent = 0;
 
-                score++; 
-                scoreSpan.textContent = score;
+                scoreSpan.textContent = currentMove;
             showOrder();
 }
             else {localMove++; localMoveSpan.textContent = localMove;}
         }
-        else {
-            console.log('incorrect');
+        else {  //  clicked the wrong button
             clearGame();
         }
 
     });
 }
 
+
 function showOrder() {
     overlay.style.display = 'block';
 
-    //console.clear();
+    console.clear();
     console.log(moves);
 
     setTimeout(() => {
     for (let i = 0; i < currentMove + 1; i++) {
-        //console.log(`showOrder(${i});`)
 
         setTimeout(() => {
             let glowClass;
@@ -174,10 +168,12 @@ function showOrder() {
                 case '4': glowClass = 'blueBTNGlow'; break;
             }
 
-            playAudio(sounds1[moves[i]]);
-
             let targetBTN = document.getElementById(String(moves[i]));
             targetBTN.classList.add(glowClass);
+
+            //sounds2[moves[i]].pause();
+            //sounds2[moves[i]].currentTime = 0;
+            //sounds2[moves[i]].cloneNode().play();
 
             setTimeout(() => {
                 targetBTN.classList.remove(glowClass)
@@ -196,12 +192,18 @@ setTimeout(() => {overlay.style.display = 'none';}, currentMove * gameSpeed + ga
 
 
 
+
+
+
+
+//  in game cheat button
 document.getElementById('cheat').addEventListener("click", () => {
     if (moves[1] == null) {return;}
     document.getElementById(moves[String(localMove)]).click();
 
 })
 
+//  back to menu button
 const difficultyButtons = document.getElementsByClassName('difficultyButton');
 for (let i = 0; i < difficultyButtons.length; i++) {
     difficultyButtons[i].addEventListener("click", () => {
@@ -209,27 +211,30 @@ for (let i = 0; i < difficultyButtons.length; i++) {
         gameplayContainer.style.display = 'none';
         customMenuContainer.style.display = 'none';
         overlay.style.display = 'none';
+        victoryContainer.style.display = 'none';
+        isCustom = false;
 
 });
 }
 
+//  title scren custom button
 document.getElementById('custom').addEventListener("click", () => {
     mainMenuContainer.style.display = 'none';
     customMenuContainer.style.display = 'block';
 })
 
+//  start game continue difficulty button
 document.getElementById('customContinueBTN').addEventListener("click", () => {
     
     if (!document.querySelector('input[name="gameSpeedInput"]:checked')) {return}
+    isCustom = true;
     difficulty = document.querySelector('input[name="gameSpeedInput"]:checked').value;
-    console.log(difficulty); 
     turnCount = document.getElementById('turnCountInput').value;
     
     customMenuContainer.style.display = 'none';
     gameplayContainer.style.display = 'block';
 
-    setTimeout(clearGame('custom'), 400);
-
+    setTimeout(clearGame, 400);
 })
 
 
@@ -243,7 +248,7 @@ for (let i = 0; i < 5; i++) {
 
         console.log(difficulty, gameSpeed, turnCount);
 
-        setTimeout(clearGame(), 400);
+        setTimeout(clearGame, 400);
     })
 }
 
@@ -254,3 +259,17 @@ function resizeBTNGrid() {
 
 resizeBTNGrid();
 window.addEventListener("resize", resizeBTNGrid);
+
+document.getElementById("playAgain").addEventListener("click", clearGame);
+
+
+//  hamburber
+document.getElementById('hamburger').addEventListener("click", () => {
+    overlay.style.display = 'block';
+    document.getElementById('hamburgerContainer').style.display = 'flex';
+})
+
+document.getElementById('hamburgerX').addEventListener("click", () => {
+    overlay.style.display = 'none';
+    document.getElementById('hamburgerContainer').style.display = 'none';
+})

@@ -1,6 +1,6 @@
 [package]
 name = "Simon-Desktop"
-version = "0.2.0"
+version = "0.4.0"
 description = "A desktop version of the original Simon toy."
 authors = ["Yoshomay"]
 edition = "2021"
