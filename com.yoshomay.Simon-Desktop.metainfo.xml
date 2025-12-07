@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop">
-  <id>com.yoshomay.Simon-Desktop</id>
+<component type="desktop-application">
+  <id>io.github.yoshomay.simon_desktop</id>
+  
   <name>Simon Desktop</name>
   <summary>A desktop version of the original Simon toy, created with Tauri.</summary>
+  
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  
   <description>
-    <p>A desktop version of the original Simon toy, created with Tauri.</p>
-    <p>Source code: <url type="sourcecode">https://github.com/Yoshomay/simon-desktop</url></p>
-    <p>Theme heavily based on the Zorin OS ZorinBlue-Dark gtk theme <url type="other">https://zorin.com/os/</url></p>
+    <p>
+      A desktop version of the original Simon toy, created with Tauri.
+    </p>
   </description>
-  <project_group>yoshomay</project_group>
-  <launchable type="desktop-id">
-    <desktop_file>com.yoshomay.Simon-Desktop.desktop</desktop_file>
-  </launchable>
+  
+  <launchable type="desktop-id">com.yoshomay.Simon-Desktop.desktop</launchable>
   <screenshots>
-    <screenshot type="default">screenshots/screenshot_1.png</screenshot>
-    <screenshot type="default">screenshots/screenshot_2.png</screenshot>
-    <screenshot type="default">screenshots/screenshot_3.png</screenshot>
-    <screenshot type="default">screenshots/screenshot_4.png</screenshot>
+    <screenshot type="default">
+      <image>https://github.com/Yoshomay/simon-desktop/blob/main/screenshots/screenshot_1.png?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image>https://github.com/Yoshomay/simon-desktop/blob/main/screenshots/screenshot_2.png?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image>https://github.com/Yoshomay/simon-desktop/blob/main/screenshots/screenshot_3.png?raw=true</image>
+    </screenshot>
   </screenshots>
-  <url type="homepage">https://github.com/yoshomay/simon-desktop</url>
-  <categories>
-    <category>Game</category>
-  </categories>
 </component>

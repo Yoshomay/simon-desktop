@@ -1,53 +1,39 @@
 id: com.yoshomay.Simon-Desktop
 
 runtime: org.gnome.Platform
-runtime-version: "46"
+runtime-version: '46'
 sdk: org.gnome.Sdk
-sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node20
-  
-command: simon-desktop
 
+command: Simon-Desktop
 finish-args:
-  - --socket=wayland
-  - --socket=fallback-x11
-  - --device=dri
+  - --socket=wayland # Permission needed to show the window
+  - --socket=fallback-x11 # Permission needed to show the window
+  - --device=dri # OpenGL, not necessary for all projects
   - --share=ipc
 
 modules:
-  - name: simon-desktop
+  - name: binary
     buildsystem: simple
-
-    build-options:
-      append-path: /usr/lib/sdk/node20/bin
-      env:
-        NODE_ROOT: /usr/lib/sdk/node20
-
-    build-commands:
-      # Build Tauri app inside the Flatpak env
-      - npx tauri build -- --bundles none --release
-
-      # Install built binary
-      - install -Dm755 src-tauri/target/release/Simon-Desktop /app/bin/simon-desktop
-
-      # Install desktop file
-      - install -Dm644 com.yoshomay.Simon-Desktop.desktop \
-          /app/share/applications/com.yoshomay.Simon-Desktop.desktop
-
-      # Install icons
-      - install -Dm644 app-icon.png \
-          /app/share/icons/hicolor/128x128/apps/com.yoshomay.Simon-Desktop.png
-      - install -Dm644 app-icon.png \
-          /app/share/icons/hicolor/64x64/apps/com.yoshomay.Simon-Desktop.png
-      - install -Dm644 app-icon.png \
-          /app/share/icons/hicolor/256x256/apps/com.yoshomay.Simon-Desktop.png
-
-      # Install metainfo
-      - install -Dm644 com.yoshomay.Simon-Desktop.metainfo.xml \
-          /app/share/metainfo/com.yoshomay.Simon-Desktop.metainfo.xml
-
     sources:
-      - type: git
-        url: https://github.com/Yoshomay/simon-desktop.git
-        tag: v1.0.0
-
+      - type: file
+        url: https://github.com/Yoshomay/Simon-Desktop/releases/download/v1.0.0/Simon.Desktop_1.0.0_amd64.deb
+        sha256: affa3d3882da8e9478948767f5deb99517d3deb78d53f82a08fa6fcce862268b # This is required if you are using a remote source
+        only-arches: [x86_64] #This source is only used on x86_64 Computers
+        # This path points to the binary file which was created in the .deb bundle.
+        # Tauri also creates a folder which corresponds to the content of the unpacked .deb.
+        
+      - type: file
+        url: https://github.com/Yoshomay/Simon-Desktop/raw/main/com.yoshomay.Simon-Desktop.metainfo.xml
+        sha256: <sha256-of-xml-file>
+    build-commands:
+      - ar -x *.deb
+      - tar -xf data.tar.gz
+      - 'install -Dm755 usr/bin/Simon-Desktop /app/bin/Simon-Desktop'
+      - install -Dm644 "usr/share/applications/Simon Desktop.desktop" "/app/share/applications/com.yoshomay.Simon Desktop.desktop"
+      - install -Dm644 usr/share/icons/hicolor/128x128/apps/Simon-Desktop.png /app/share/icons/hicolor/128x128/apps/com.yoshomay.Simon-Desktop.png
+      - install -Dm644 usr/share/icons/hicolor/32x32/apps/Simon-Desktop.png /app/share/icons/hicolor/32x32/apps/com.yoshomay.Simon-Desktop.png
+      - install -Dm644 usr/share/icons/hicolor/256x256@2/apps/Simon-Desktop.png /app/share/icons/hicolor/256x256@2/apps/com.yoshomay.Simon-Desktop.png
+      - install -Dm644 com.yoshomay.Simon-Desktop.metainfo.xml /app/share/metainfo/com.yoshomay.Simon-Desktop.rosary.metainfo.xml
+      
+      post-install:
+      - install -Dm644 LICENSE -t ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/binary
