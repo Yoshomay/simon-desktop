@@ -24,7 +24,7 @@ modules:
         
       - type: file
         url: https://github.com/Yoshomay/Simon-Desktop/raw/main/com.yoshomay.Simon-Desktop.metainfo.xml
-        sha256: 7907e7781da10ed8978b8440177b5accc82cea17e16e19ff0b0e67526a4d9b68
+        sha256: cd1cb6233d6f1095b68b45f4f641ca0b9d24ec7bf9af19061025040ba2e5ac45
 
       - type: file
         url: https://raw.githubusercontent.com/Yoshomay/simon-desktop/refs/heads/main/LICENSE

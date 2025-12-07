@@ -4,11 +4,11 @@
   <developer_name>Yoshomay</developer_name>
   <url type="homepage">https://github.com/Yoshomay/simon-desktop</url>
 
-  <content_rating type="oars">teen</content_rating> <!-- or 'everyone', 'mature', etc. -->
-
+  <content_rating type="oars-1.0">
+  </content_rating>
   <releases>
     <release version="1.0.2" date="2025-12-06">
-      <description>Fixing flathub issues</description>
+      <description><p>Fixing flathub issues</p></description>
     </release>
   </releases>
 
