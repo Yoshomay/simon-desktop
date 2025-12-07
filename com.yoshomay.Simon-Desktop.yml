@@ -32,7 +32,7 @@ modules:
 
       - type: file
         url: https://raw.githubusercontent.com/Yoshomay/simon-desktop/refs/heads/main/com.yoshomay.Simon-Desktop.desktop
-        sha256: 4c014e08f1953348456914124af9c37698fc47e50c9b2ff4c0df78acd8628158
+        sha256: 6a0bfcc61eef0e49ef64c9c0972b2244c39463f6e4df6059bd5b342e41f38e1e
 
     build-commands:
       - install -Dm644 com.yoshomay.Simon-Desktop.metainfo.xml /app/share/metainfo/com.yoshomay.Simon-Desktop.metainfo.xml
