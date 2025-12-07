@@ -4,12 +4,11 @@
   <developer_name>Yoshomay</developer_name>
   <url type="homepage">https://github.com/Yoshomay/simon-desktop</url>
 
-  <content_rating>teen</content_rating> <!-- or 'everyone', 'mature', etc. -->
+  <content_rating type="oars">teen</content_rating> <!-- or 'everyone', 'mature', etc. -->
 
   <releases>
-    <release version="1.0.2">
+    <release version="1.0.2" date="2025-12-06">
       <description>Fixing flathub issues</description>
-      <date>2025-12-06</date>
     </release>
   </releases>
 
@@ -20,9 +19,7 @@
   <project_license>GPL-3.0-only</project_license>
   
   <description>
-    <p>
-      A desktop version of the original Simon toy, created with Tauri.
-    </p>
+    <p>A desktop version of the original Simon toy, created with Tauri.</p>
   </description>
   
   <launchable type="desktop-id">com.yoshomay.Simon-Desktop.desktop</launchable>
