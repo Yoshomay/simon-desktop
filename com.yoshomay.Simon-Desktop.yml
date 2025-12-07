@@ -24,7 +24,7 @@ modules:
         
       - type: file
         url: https://github.com/Yoshomay/Simon-Desktop/raw/main/com.yoshomay.Simon-Desktop.metainfo.xml
-        sha256: f8e53d7a3e7ca11485594b9ba44156533cdf23d68ccc216caaaa80335aa0c5b5
+        sha256: c66af9b8abb81c2cd56543eaee6f07468e4f767658083084f2ece4979d3f6b8c
 
       - type: file
         url: https://raw.githubusercontent.com/Yoshomay/simon-desktop/refs/heads/main/LICENSE
@@ -34,6 +34,10 @@ modules:
         url: https://raw.githubusercontent.com/Yoshomay/simon-desktop/refs/heads/main/com.yoshomay.Simon-Desktop.metainfo.xml
         sha256: f8e53d7a3e7ca11485594b9ba44156533cdf23d68ccc216caaaa80335aa0c5b5
 
+      - type: file
+        url: https://raw.githubusercontent.com/Yoshomay/simon-desktop/refs/heads/main/com.yoshomay.Simon-Desktop.desktop
+        sha256: 40f91740ccbd1f1c33fd168e1c32e10fa702a722481dc20332edcf32251586c2
+
     build-commands:
       - install -Dm644 com.yoshomay.Simon-Desktop.metainfo.xml /app/share/metainfo/com.yoshomay.Simon-Desktop.metainfo.xml
       - ar -x *.deb
@@ -42,7 +46,7 @@ modules:
       - install -Dm644 "usr/share/applications/Simon-Desktop.desktop" "/app/share/applications/com.yoshomay.Simon-Desktop.desktop"
       - install -Dm644 usr/share/icons/hicolor/128x128/apps/Simon-Desktop.png /app/share/icons/hicolor/128x128/apps/com.yoshomay.Simon-Desktop.png
       - install -Dm644 usr/share/icons/hicolor/32x32/apps/Simon-Desktop.png /app/share/icons/hicolor/32x32/apps/com.yoshomay.Simon-Desktop.png
-      - install -Dm644 usr/share/icons/hicolor/256x256@2/apps/Simon-Desktop.png /app/share/icons/hicolor/256x256@2/apps/com.yoshomay.Simon-Desktop.png
-      
+      - install -Dm644 flatpak/com.yoshomay.Simon-Desktop.desktop /app/share/applications/com.yoshomay.Simon-Desktop.desktop
+
     post-install:
       - install -Dm644 LICENSE -t ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/binary
