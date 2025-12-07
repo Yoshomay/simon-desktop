@@ -36,17 +36,16 @@ modules:
 
       - type: file
         url: https://raw.githubusercontent.com/Yoshomay/simon-desktop/refs/heads/main/com.yoshomay.Simon-Desktop.desktop
-        sha256: 40f91740ccbd1f1c33fd168e1c32e10fa702a722481dc20332edcf32251586c2
+        sha256: 21945b39149201839e03700c50e3660cbb2e800d8ce81a57e43cf4bb425338ae
 
     build-commands:
       - install -Dm644 com.yoshomay.Simon-Desktop.metainfo.xml /app/share/metainfo/com.yoshomay.Simon-Desktop.metainfo.xml
       - ar -x *.deb
       - tar -xf data.tar.gz
-      - 'install -Dm755 usr/bin/Simon-Desktop /app/bin/Simon-Desktop'
-      - install -Dm644 "usr/share/applications/Simon-Desktop.desktop" "/app/share/applications/com.yoshomay.Simon-Desktop.desktop"
+      - install -Dm755 usr/bin/Simon-Desktop /app/bin/Simon-Desktop
+      - install -Dm644 com.yoshomay.Simon-Desktop.desktop /app/share/applications/com.yoshomay.Simon-Desktop.desktop
       - install -Dm644 usr/share/icons/hicolor/128x128/apps/Simon-Desktop.png /app/share/icons/hicolor/128x128/apps/com.yoshomay.Simon-Desktop.png
       - install -Dm644 usr/share/icons/hicolor/32x32/apps/Simon-Desktop.png /app/share/icons/hicolor/32x32/apps/com.yoshomay.Simon-Desktop.png
-      - install -Dm644 flatpak/com.yoshomay.Simon-Desktop.desktop /app/share/applications/com.yoshomay.Simon-Desktop.desktop
 
     post-install:
       - install -Dm644 LICENSE -t ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/binary
