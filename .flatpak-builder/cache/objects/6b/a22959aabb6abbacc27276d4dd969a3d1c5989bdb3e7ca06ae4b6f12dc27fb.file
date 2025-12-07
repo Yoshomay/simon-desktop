@@ -1,0 +1,5 @@
+[Runtime]
+name=com.yoshomay.Simon_Desktop.Debug
+
+[ExtensionOf]
+ref=app/com.yoshomay.Simon-Desktop/x86_64/master

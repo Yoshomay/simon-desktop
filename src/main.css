@@ -220,7 +220,7 @@ input[type=number] {
           backdrop-filter: blur(6px);
 }
 
-#hamburgerContainer {
+#aboutContainer {
   display: none;
   place-items: center;
   z-index: 16;
@@ -230,7 +230,7 @@ input[type=number] {
   top: 1%;
   height: 90vh;
 }
-#hamburgerContainer #hamburger2 {
+#aboutContainer #about2 {
   position: relative;
   max-height: 90vh;
   overflow: auto;
@@ -238,7 +238,7 @@ input[type=number] {
   background-color: #161c1f;
 }
 
-#hamburgerX {
+#aboutX {
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Simon Desktop
+Exec=simon-desktop
+Icon=com.yoshomay.Simon-Desktop
+Type=Application
+Categories=Game;
+

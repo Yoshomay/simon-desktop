@@ -1,5 +1,5 @@
 //  enable this to have debug info shown
-let debug = true;
+let debug = false;
 
 if (debug == true) {
     const debugThings = document.getElementsByClassName('debug');
@@ -18,14 +18,12 @@ const customMenuContainer = document.getElementById('customMenu');
 const victoryContainer = document.getElementById('victoryContainer');
 
 
-
+let moves = {};
 let currentMove = 0;
 let localMove = 0;
-let moves = {};
-
 let difficulty;
-let gameSpeed; 
 let turnCount;
+let gameSpeed; 
 let isCustom = false;
 
 /*
@@ -47,6 +45,9 @@ const sounds3 = {
     3: new Audio('sounds/3_3.mp3'),
     4: new Audio('sounds/3_4.mp3')
 }*/
+
+function newDisplay(element, newValue) {
+    element.style.display = newValue;}
 
 
 //  generate turn order
@@ -100,8 +101,8 @@ function clearGame() {
             turnCount = 9999; break;
     }}
     
-    victoryContainer.style.display = 'none';
-    overlay.style.display = 'none';
+    newDisplay(victoryContainer, "none");
+    newDisplay(overlay, "none")
     overlay.classList.remove('bgBlur');
 
     moves = {};
@@ -118,9 +119,9 @@ for (let i = 1; i < 5; i++) {
         //  u win
         if (clickedBTN.target.id == moves[localMove] && localMove == currentMove && currentMove == turnCount - 1) {
             
-                overlay.style.display = 'block';
+                newDisplay(overlay, "block");
                 overlay.classList.add('bgBlur');
-                victoryContainer.style.display = 'grid';                 
+                newDisplay(victoryContainer, "grid")                 
                 return;
             
         }
@@ -151,7 +152,7 @@ for (let i = 1; i < 5; i++) {
 
 
 function showOrder() {
-    overlay.style.display = 'block';
+    newDisplay(overlay, "block");
 
     console.clear();
     console.log(moves);
@@ -186,7 +187,8 @@ function showOrder() {
 
 //  controls how long the dark overlay will last,
 //  currentMove * gameSpeed to make it last the time needed, + gameSpeed to add a little bit extra before it goes away
-setTimeout(() => {overlay.style.display = 'none';}, currentMove * gameSpeed + gameSpeed + gameSpeed);  
+setTimeout(() => {newDisplay(overlay, "none")}, 
+currentMove * gameSpeed + gameSpeed + gameSpeed);  
 }
 
 
@@ -207,11 +209,11 @@ document.getElementById('cheat').addEventListener("click", () => {
 const difficultyButtons = document.getElementsByClassName('difficultyButton');
 for (let i = 0; i < difficultyButtons.length; i++) {
     difficultyButtons[i].addEventListener("click", () => {
-        mainMenuContainer.style.display = 'block';
-        gameplayContainer.style.display = 'none';
-        customMenuContainer.style.display = 'none';
-        overlay.style.display = 'none';
-        victoryContainer.style.display = 'none';
+        newDisplay(mainMenuContainer, "block");
+        newDisplay(gameplayContainer, "none");
+        newDisplay(customMenuContainer, "none");
+        newDisplay(overlay, "none");
+        newDisplay(victoryContainer, "none");
         isCustom = false;
 
 });
@@ -219,8 +221,8 @@ for (let i = 0; i < difficultyButtons.length; i++) {
 
 //  title scren custom button
 document.getElementById('custom').addEventListener("click", () => {
-    mainMenuContainer.style.display = 'none';
-    customMenuContainer.style.display = 'block';
+    newDisplay(mainMenuContainer, "none");
+    newDisplay(customMenuContainer, "block");
 })
 
 //  start game continue difficulty button
@@ -231,8 +233,8 @@ document.getElementById('customContinueBTN').addEventListener("click", () => {
     difficulty = document.querySelector('input[name="gameSpeedInput"]:checked').value;
     turnCount = document.getElementById('turnCountInput').value;
     
-    customMenuContainer.style.display = 'none';
-    gameplayContainer.style.display = 'block';
+    newDisplay(customMenuContainer, "none");
+    newDisplay(gameplayContainer, "block")
 
     setTimeout(clearGame, 400);
 })
@@ -244,6 +246,8 @@ for (let i = 0; i < 5; i++) {
     document.getElementsByClassName('col')[i].addEventListener("click", (input) => {
         mainMenuContainer.style.display = 'none';
         gameplayContainer.style.display = 'block';
+        newDisplay(mainMenuContainer, "none");
+        newDisplay(gameplayContainer, "block");
         difficulty = input.target.id;
 
         console.log(difficulty, gameSpeed, turnCount);
@@ -263,13 +267,13 @@ window.addEventListener("resize", resizeBTNGrid);
 document.getElementById("playAgain").addEventListener("click", clearGame);
 
 
-//  hamburber
-document.getElementById('hamburger').addEventListener("click", () => {
-    overlay.style.display = 'block';
-    document.getElementById('hamburgerContainer').style.display = 'flex';
+//  about popup
+document.getElementById('about').addEventListener("click", () => {
+    newDisplay(overlay, "block");
+    newDisplay(document.getElementById('aboutContainer'), "flex");
 })
 
-document.getElementById('hamburgerX').addEventListener("click", () => {
-    overlay.style.display = 'none';
-    document.getElementById('hamburgerContainer').style.display = 'none';
+document.getElementById('aboutX').addEventListener("click", () => {
+    newDisplay(overlay, "none");
+    newDisplay(document.getElementById('aboutContainer'), "none");
 })

@@ -1,0 +1,34 @@
+id: com.yoshomay.Simon-Desktop
+
+runtime: org.gnome.Platform
+runtime-version: '46'
+sdk: org.gnome.Sdk
+
+command: simon-desktop
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+  - --share=ipc
+
+modules:
+  - name: binary
+    buildsystem: simple
+    sources:
+      - type: file
+        path: src-tauri/target/release/Simon-Desktop
+        only-arches: [x86_64]
+      - type: file
+        path: com.yoshomay.Simon-Desktop.desktop
+      - type: file
+        path: com.yoshomay.Simon-Desktop.metainfo.xml
+      - type: file
+        path: app-icon.png
+    build-commands:
+      - install -Dm755 Simon-Desktop /app/bin/simon-desktop
+      - install -Dm644 com.yoshomay.Simon-Desktop.desktop /app/share/applications/com.yoshomay.Simon-Desktop.desktop
+      - install -Dm644 app-icon.png /app/share/icons/hicolor/128x128/apps/Simon-Desktop.png
+      - install -Dm644 app-icon.png /app/share/icons/hicolor/32x32/apps/Simon-Desktop.png
+      - install -Dm644 app-icon.png /app/share/icons/hicolor/256x256@2/apps/Simon-Desktop.png
+      - install -Dm644 com.yoshomay.Simon-Desktop.metainfo.xml /app/share/metainfo/Simon-Desktop.rosary.metainfo.xml
+

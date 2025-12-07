@@ -1,8 +1,8 @@
-Desktop version of the orignal Simon toy. This is still in beta and is missing features currently.
+Desktop version of the orignal Simon toy, created with Tauri.
+
+![(Screenshot of the app)](./screenshots/screenshot_1.png)
 
 Theme heavily based on the [Zorin OS](https://zorin.com/os/) ZorinBlue-Dark gtk theme
-
-Sound effects done by [Sinotus](https://www.twitter.com/sinotus13)
 
 
 # Build instructions
@@ -13,33 +13,26 @@ You must be running Linux/wsl to compile, either that or use something like dock
     
 Create the node project\
 `npm install`
-
-Move into the src-tauri folder\
-`cd src-tauri/` 
     
 Now build the project\
 `npm run tauri build`
 
 The .deb will be located in `/src-tauri/target/release/bundle/deb/`\
-The .rpm will be located in `/src-tauri/target/release/bundle/rpm/`\ (rpm builds are off right now)
+The .rpm will be located in `/src-tauri/target/release/bundle/rpm/`\ 
 The .appimage will be located in `/src-tauri/target/release/bundle/appimage/`
-
+The portable tar.gz will be located at `src-tauri/target/release/simon-desktop`
 
 ## For Windows builds
 Like with the Linux builds, you have to be running Windows or something like docker or github actions
     
 Create the node project\
 `npm install`
-
-Move into the src-tauri folder\
-`cd src-tauri/` 
     
 Now build the project\
 `npm run tauri build`
 
 The .exe installer will be located in `/src-tauri/target/release/bundle/nsis/`\
-The .msi installer will be located in `/src-tauri/target/release/bundle/msi/`\
-The .zip contents will be in `/src-tauri/target/release/`, just make sure to remove the `bundle` folder to remove the .msi and .exe installers.
+The portable .exe version will be located in `/src-tauri/target/release/`, only the .exe is needed.
     
 
 ## For MacOS builds
