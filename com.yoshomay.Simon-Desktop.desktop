@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Simon Desktop
-Exec=simon-desktop
+Exec=Simon-Desktop
 Icon=com.yoshomay.Simon-Desktop
 Type=Application
 Categories=Games;
