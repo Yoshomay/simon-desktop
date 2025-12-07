@@ -1,7 +1,7 @@
 id: com.yoshomay.Simon-Desktop
 
 runtime: org.gnome.Platform
-runtime-version: '46'
+runtime-version: '49'
 sdk: org.gnome.Sdk
 
 command: Simon-Desktop
@@ -24,8 +24,18 @@ modules:
         
       - type: file
         url: https://github.com/Yoshomay/Simon-Desktop/raw/main/com.yoshomay.Simon-Desktop.metainfo.xml
-        sha256: <sha256-of-xml-file>
+        sha256: f8e53d7a3e7ca11485594b9ba44156533cdf23d68ccc216caaaa80335aa0c5b5
+
+      - type: file
+        url: https://raw.githubusercontent.com/Yoshomay/simon-desktop/refs/heads/main/LICENSE
+        sha256: e57f1c320b8cf8798a7d2ff83a6f9e06a33a03585f6e065fea97f1d86db84052
+
+      - type: file
+        url: https://raw.githubusercontent.com/Yoshomay/simon-desktop/refs/heads/main/com.yoshomay.Simon-Desktop.metainfo.xml
+        sha256: f8e53d7a3e7ca11485594b9ba44156533cdf23d68ccc216caaaa80335aa0c5b5
+
     build-commands:
+      - install -Dm644 com.yoshomay.Simon-Desktop.metainfo.xml /app/share/metainfo/com.yoshomay.Simon-Desktop.metainfo.xml
       - ar -x *.deb
       - tar -xf data.tar.gz
       - 'install -Dm755 usr/bin/Simon-Desktop /app/bin/Simon-Desktop'
@@ -35,5 +45,5 @@ modules:
       - install -Dm644 usr/share/icons/hicolor/256x256@2/apps/Simon-Desktop.png /app/share/icons/hicolor/256x256@2/apps/com.yoshomay.Simon-Desktop.png
       - install -Dm644 com.yoshomay.Simon-Desktop.metainfo.xml /app/share/metainfo/com.yoshomay.Simon-Desktop.rosary.metainfo.xml
       
-      post-install:
+    post-install:
       - install -Dm644 LICENSE -t ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/binary
