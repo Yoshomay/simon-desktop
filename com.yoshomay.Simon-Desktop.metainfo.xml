@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.github.yoshomay.simon_desktop</id>
+  <id>com.yoshomay.Simon-Desktop</id>
   
   <name>Simon Desktop</name>
   <summary>A desktop version of the original Simon toy, created with Tauri.</summary>

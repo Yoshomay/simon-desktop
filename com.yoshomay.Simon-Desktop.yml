@@ -16,8 +16,8 @@ modules:
     buildsystem: simple
     sources:
       - type: file
-        url: https://github.com/Yoshomay/Simon-Desktop/releases/download/v1.0.0/Simon.Desktop_1.0.0_amd64.deb
-        sha256: affa3d3882da8e9478948767f5deb99517d3deb78d53f82a08fa6fcce862268b # This is required if you are using a remote source
+        url: https://github.com/Yoshomay/simon-desktop/releases/download/v1.0.1/Simon-Desktop_1.0.1_amd64.deb
+        sha256: bf8d67c24ef65b1d92f5eb6559402736121c3fea58fe1e111223dd7403c9fde3 # This is required if you are using a remote source
         only-arches: [x86_64] #This source is only used on x86_64 Computers
         # This path points to the binary file which was created in the .deb bundle.
         # Tauri also creates a folder which corresponds to the content of the unpacked .deb.
@@ -39,11 +39,10 @@ modules:
       - ar -x *.deb
       - tar -xf data.tar.gz
       - 'install -Dm755 usr/bin/Simon-Desktop /app/bin/Simon-Desktop'
-      - install -Dm644 "usr/share/applications/Simon Desktop.desktop" "/app/share/applications/com.yoshomay.Simon Desktop.desktop"
+      - install -Dm644 "usr/share/applications/Simon-Desktop.desktop" "/app/share/applications/com.yoshomay.Simon-Desktop.desktop"
       - install -Dm644 usr/share/icons/hicolor/128x128/apps/Simon-Desktop.png /app/share/icons/hicolor/128x128/apps/com.yoshomay.Simon-Desktop.png
       - install -Dm644 usr/share/icons/hicolor/32x32/apps/Simon-Desktop.png /app/share/icons/hicolor/32x32/apps/com.yoshomay.Simon-Desktop.png
       - install -Dm644 usr/share/icons/hicolor/256x256@2/apps/Simon-Desktop.png /app/share/icons/hicolor/256x256@2/apps/com.yoshomay.Simon-Desktop.png
-      - install -Dm644 com.yoshomay.Simon-Desktop.metainfo.xml /app/share/metainfo/com.yoshomay.Simon-Desktop.rosary.metainfo.xml
       
     post-install:
       - install -Dm644 LICENSE -t ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/binary
