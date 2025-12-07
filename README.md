@@ -22,6 +22,10 @@ The .rpm will be located in `/src-tauri/target/release/bundle/rpm/`\
 The .appimage will be located in `/src-tauri/target/release/bundle/appimage/`
 The portable tar.gz will be located at `src-tauri/target/release/simon-desktop`
 
+flatpak install org.freedesktop.Sdk.Extension.node20//23.08
+
+
+
 ## For Windows builds
 Like with the Linux builds, you have to be running Windows or something like docker or github actions
     
