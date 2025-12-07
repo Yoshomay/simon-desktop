@@ -3,4 +3,4 @@ Name=Simon Desktop
 Exec=Simon-Desktop
 Icon=com.yoshomay.Simon-Desktop
 Type=Application
-Categories=Games;
+Categories=Game;

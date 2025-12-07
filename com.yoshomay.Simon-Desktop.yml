@@ -31,10 +31,6 @@ modules:
         sha256: e57f1c320b8cf8798a7d2ff83a6f9e06a33a03585f6e065fea97f1d86db84052
 
       - type: file
-        url: https://raw.githubusercontent.com/Yoshomay/simon-desktop/refs/heads/main/com.yoshomay.Simon-Desktop.metainfo.xml
-        sha256: f8e53d7a3e7ca11485594b9ba44156533cdf23d68ccc216caaaa80335aa0c5b5
-
-      - type: file
         url: https://raw.githubusercontent.com/Yoshomay/simon-desktop/refs/heads/main/com.yoshomay.Simon-Desktop.desktop
         sha256: 4c014e08f1953348456914124af9c37698fc47e50c9b2ff4c0df78acd8628158
 
