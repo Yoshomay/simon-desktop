@@ -25,8 +25,7 @@ modules:
 
     build-commands:
       # Build Tauri app inside the Flatpak env
-      - npm install --no-audit --prefer-offline
-      - npm run tauri build -- --bundles none --release
+      - npx tauri build -- --bundles none --release
 
       # Install built binary
       - install -Dm755 src-tauri/target/release/Simon-Desktop /app/bin/simon-desktop
